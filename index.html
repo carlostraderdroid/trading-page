@@ -1,458 +1,90 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Carlos Trading</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Página oficial de Carlos Trading – opciones binarias, DCA en Bitcoin y plan para libertad financiera."
+  />
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #050711;
-      color: #f5f5f5;
-      line-height: 1.6;
+    :root {
+      --bg: #050711;
+      --bg-alt: #0b0f1d;
+      --card: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --danger: #f97373;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --success: #4ade80;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
     }
-    a { color: #38bdf8; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #1f2937 0, #020617 40%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout general */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(5,7,17,0.88);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      margin-bottom: 2rem;
     }
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.8rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      font-size: .9rem;
-      color: #38bdf8;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      font-size: .9rem;
-      color: #cbd5f5;
-    }
-
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3.5rem 1.2rem 2.5rem;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 2rem;
-      align-items: center;
-    }
-    @media (max-width: 800px){
-      .hero { grid-template-columns: 1fr; padding-top: 2.5rem; }
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: .75rem;
-      padding: .25rem .6rem;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.1);
-      color: #7dd3fc;
-      margin-bottom: .9rem;
-    }
-    .hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      margin-bottom: 0.7rem;
-    }
-    .hero p {
-      color: #94a3b8;
-      max-width: 34rem;
-      margin-bottom: 1.3rem;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .8rem;
-      margin-bottom: 1.6rem;
-    }
-    .btn {
-      border-radius: 999px;
-      padding: .7rem 1.4rem;
-      border: 1px solid transparent;
-      font-size: .9rem;
-      cursor: pointer;
-      transition: transform .1s ease, box-shadow .1s ease, background .15s ease;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: white;
-      box-shadow: 0 18px 40px rgba(22,163,74,0.35);
-    }
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 45px rgba(22,163,74,0.5);
-    }
-    .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(148,163,184,0.4);
-      color: #e5e7eb;
-    }
-    .btn-ghost:hover {
-      background: rgba(30,41,59,0.9);
-      transform: translateY(-1px);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 0.9rem;
-      max-width: 24rem;
-    }
-    .stat-card {
-      padding: .9rem 1rem;
-      border-radius: 1rem;
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.18), rgba(15,23,42,0.98));
-      border: 1px solid rgba(148,163,184,0.4);
-    }
-    .stat-label {
-      font-size: .75rem;
-      color: #cbd5f5;
-    }
-    .stat-value {
-      margin-top: .1rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-    }
-    .stat-note {
-      font-size: .7rem;
-      color: #94a3b8;
-      margin-top: .2rem;
-    }
-
-    .hero-card {
-      border-radius: 1.4rem;
-      padding: 1.4rem 1.3rem;
-      background: radial-gradient(circle at top, rgba(16,185,129,0.2), rgba(15,23,42,0.98));
-      border: 1px solid rgba(52,211,153,0.4);
-      box-shadow: 0 22px 60px rgba(15,118,110,0.4);
-    }
-    .screen-title {
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: #a5b4fc;
-      margin-bottom: .7rem;
-    }
-    .rule-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: .4rem;
-      font-size: .85rem;
-    }
-    .rule-label { color: #cbd5f5; }
-    .rule-value { font-weight: 600; color: #bbf7d0; }
-    .rule-tag {
-      display: inline-flex;
-      padding: .18rem .55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      font-size: .7rem;
-      color: #cbd5f5;
-      margin-top: .4rem;
-    }
-    .divider {
-      height: 1px;
-      border-radius: 999px;
-      margin: 0.8rem 0;
-      background: linear-gradient(to right, transparent, rgba(148,163,184,0.7), transparent);
-    }
-    .checklist {
-      font-size: .8rem;
-      color: #e5e7eb;
-      list-style: none;
-    }
-    .checklist li { margin-bottom: .25rem; }
-
-    section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 1.2rem 0;
-    }
-    section h2 {
-      font-size: 1.4rem;
-      margin-bottom: .8rem;
-    }
-    section p { color: #94a3b8; }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 1.8rem;
-    }
-    @media (max-width: 900px){
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      border-radius: 1rem;
-      padding: 1.3rem 1.2rem;
-      background: rgba(15,23,42,0.96);
-      border: 1px solid rgba(148,163,184,0.4);
-    }
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: .4rem;
-    }
-    .card ul {
-      list-style: none;
-      padding-left: 0;
-      margin-top: .4rem;
-      color: #cbd5f5;
-      font-size: .9rem;
-    }
-    .card ul li { margin-bottom: .35rem; }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: .3rem;
-      padding: .2rem .55rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 999px;
-      font-size: .75rem;
-      background: rgba(30,64,175,0.4);
-      color: #bfdbfe;
-      margin-bottom: .35rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 0.75rem;
+      color: var(--muted);
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
     }
 
-    footer {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 1.2rem 2.8rem;
-      font-size: .8rem;
-      color: #64748b;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: .7rem;
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
     }
-  </style>
-</head>
-<body>
-  <header>
-    <nav class="nav">
-      <div class="logo">CARLOS · TRADING</div>
-      <div class="nav-links">
-        <a href="#plan">Plan</a>
-        <a href="#reglas">Reglas</a>
-        <a href="#bitacora">Bitácora</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <div class="badge">
-          <span>🧠</span> Trading con disciplina, no con suerte
-        </div>
-        <h1>De sushiero a trader disciplinado.</h1>
-        <p>
-          Esta página resume mi plan de trading: cuánto arriesgo, cuándo opero
-          y qué reglas no se rompen. No estoy buscando hacerme rico en un día,
-          estoy construyendo consistencia.
-        </p>
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
 
-        <div class="hero-buttons">
-          <button class="btn btn-primary" onclick="document.getElementById('plan').scrollIntoView({behavior:'smooth'})">
-            Ver plan diario
-          </button>
-          <button class="btn btn-ghost" onclick="document.getElementById('bitacora').scrollIntoView({behavior:'smooth'})">
-            Plantilla de bitácora
-          </button>
-        </div>
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
 
-        <div class="hero-stats">
-          <div class="stat-card">
-            <div class="stat-label">Riesgo por operación</div>
-            <div class="stat-value">2–3 %</div>
-            <div class="stat-note">Nada de locuras, nada de all-in.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Máx. operaciones al día</div>
-            <div class="stat-value">6 trades</div>
-            <div class="stat-note">3 en la mañana · 3 en la noche.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel lateral -->
-      <aside class="hero-card">
-        <div class="screen-title">Panel de control</div>
-
-        <div class="rule-row">
-          <div class="rule-label">Sesión mañana</div>
-          <div class="rule-value">3 operaciones máx.</div>
-        </div>
-        <div class="rule-row">
-          <div class="rule-label">Sesión noche</div>
-          <div class="rule-value">3 operaciones máx.</div>
-        </div>
-        <div class="rule-row">
-          <div class="rule-label">Stop diario</div>
-          <div class="rule-value">2 pérdidas seguidas</div>
-        </div>
-        <span class="rule-tag">Si gano 3 seguidas ➜ cierro el día</span>
-
-        <div class="divider"></div>
-
-        <div class="screen-title">Checklist antes de operar</div>
-        <ul class="checklist">
-          <li>✔ Dormí mínimo 7 horas.</li>
-          <li>✔ No estoy enojado ni ansioso.</li>
-          <li>✔ Sé qué estrategia voy a usar.</li>
-          <li>✔ Acepto perder sin romper el plan.</li>
-        </ul>
-
-        <div class="divider"></div>
-
-        <div class="screen-title">Mantra</div>
-        <p style="font-size:.8rem;color:#e5e7eb;">
-          “No opero para demostrar nada a nadie.
-          Opero para ser rentable y libre.”
-        </p>
-      </aside>
-    </section>
-
-    <!-- PLAN -->
-    <section id="plan">
-      <h2>Plan diario de trading</h2>
-      <p>
-        Mi objetivo no es adivinar el mercado, es ejecutar siempre el mismo
-        proceso. Si respeto el plan, fue un buen día, gane o pierda.
-      </p>
-
-      <div class="grid-2" style="margin-top:1.5rem;">
-        <div class="card">
-          <h3>1. Horarios</h3>
-          <ul>
-            <li><strong>Sesión mañana:</strong> ajusta aquí tu horario (ej. 8:00-9:00)</li>
-            <li><strong>Sesión noche:</strong> ajusta aquí tu horario (ej. 20:00-21:00)</li>
-            <li>Fuera de esos rangos: <strong>no se opera</strong>.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>2. Gestión de riesgo</h3>
-          <ul>
-            <li>Riesgo por operación: <strong>2–3 %</strong> del capital.</li>
-            <li>Máx. 6 operaciones al día.</li>
-            <li>Al perder 2 seguidas ➜ cierro la sesión.</li>
-            <li>Al ganar 3 seguidas ➜ protejo ganancia y cierro.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>3. Durante la sesión</h3>
-          <ul>
-            <li>Un trade a la vez, nada de spam.</li>
-            <li>Si tengo dudas, <strong>no entro</strong>.</li>
-            <li>No cambio de estrategia a media sesión.</li>
-            <li>Respeto el tamaño de lote aunque vea “la entrada perfecta”.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>4. Después de la sesión</h3>
-          <ul>
-            <li>Anotar todos los trades en la bitácora.</li>
-            <li>Preguntarme: ¿falló el plan o fallé yo?</li>
-            <li>Sacar 1 aprendizaje por día, aunque sea pequeño.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- REGLAS -->
-    <section id="reglas">
-      <h2>Reglas que NO se rompen</h2>
-
-      <div class="grid-2" style="margin-top:1.5rem;">
-        <div class="card">
-          <span class="pill">🧱 Mentalidad</span>
-          <h3>Psicología primero</h3>
-          <ul>
-            <li>No opero en medio de discusiones o problemas familiares.</li>
-            <li>No opero si estoy agotado o con sueño.</li>
-            <li>No persigo pérdidas. Si se fue, se fue.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="pill">🚫 Prohibido</span>
-          <h3>Cosas que me destruyen la cuenta</h3>
-          <ul>
-            <li>Martingala o doblar monto después de perder.</li>
-            <li>Subir el riesgo solo porque “voy ganando”.</li>
-            <li>Operar para desfogarme emocionalmente.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- BITÁCORA -->
-    <section id="bitacora">
-      <h2>Plantilla de bitácora</h2>
-      <p>
-        Copia estas columnas en Excel, Google Sheets o Notion y registra cada operación:
-      </p>
-
-      <div class="card" style="margin-top:1rem;">
-        <ul>
-          <li>📅 Fecha</li>
-          <li>⏰ Hora</li>
-          <li>💱 Activo / Par</li>
-          <li>📈 Dirección (compra/venta, call/put)</li>
-          <li>💵 Monto arriesgado</li>
-          <li>✅ Resultado (G / P)</li>
-          <li>📚 Setup / motivo de entrada</li>
-          <li>🧠 Comentario: ¿respeté el plan?</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>
-        Si algún día convierto esto en comunidad, aquí puedo poner mi correo,
-        Instagram o canal de Telegram para compartir análisis y evolución.
-      </p>
-      <div class="card" style="margin-top:1rem;">
-        <p style="color:#cbd5f5;">
-          💌 Correo: <strong>tucorreo@example.com</strong><br>
-          📸 Instagram: <strong>@tu_usuario_trading</strong><br>
-          🎧 Spotify / YouTube: playlist para operar enfocado.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <span>© <span id="year"></span> Carlos · Diario de Trading.</span>
-    <span>Construyendo libertad con disciplina, no con suerte.</span>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+    .hero
