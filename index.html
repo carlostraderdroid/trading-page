@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Carlos Trading</title>
+  <title>Carlos Treviño – Trader, Bitcoin y SUSHERO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Página oficial de Carlos Trading – Opciones Binarias, Bitcoin DCA, disciplina y libertad financiera." />
+  <meta name="description"
+    content="Página oficial de Carlos Treviño: Opciones binarias, DCA en Bitcoin, psicotrading y su plan para la libertad financiera." />
 
   <style>
     :root {
@@ -13,14 +14,19 @@
       --card: #111827;
       --accent: #38bdf8;
       --accent-soft: rgba(56, 189, 248, 0.12);
-      --danger: #f97373;
       --text: #e5e7eb;
       --muted: #9ca3af;
-      --success: #4ade80;
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      --success: #22c55e;
+      --danger: #f97373;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      "Segoe UI", sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: var(--font-main);
@@ -29,15 +35,111 @@
       min-height: 100vh;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    .page {
-      max-width: 960px;
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.6));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      overflow: hidden;
+      background: #020617;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.85rem;
+      font-size: 0.8rem;
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* LAYOUT GENERAL */
+    main {
+      max-width: 1080px;
       margin: 0 auto;
       padding: 1.5rem 1.25rem 3rem;
     }
 
-    header { margin-bottom: 2rem; }
+    section {
+      margin-bottom: 2.5rem;
+    }
 
     .pill {
       display: inline-flex;
@@ -53,150 +155,400 @@
     }
 
     .pill-dot {
-      width: 6px; height: 6px; border-radius: 999px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
       background: var(--success);
-      box-shadow: 0 0 12px rgba(74,222,128,0.8);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
     }
 
+    /* HERO CON FOTO */
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 1.5rem;
+      gap: 1.6rem;
       align-items: center;
     }
 
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; }
-    }
-
     .hero-title {
-      font-size: 2.4rem;
-      line-height: 1.2;
-      font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.7rem;
     }
 
-    .hero-title span {
+    .hero-title span.highlight {
       color: var(--accent);
-      text-shadow: 0 0 12px rgba(56,189,248,0.5);
+      text-shadow: 0 0 16px rgba(56, 189, 248, 0.55);
     }
 
-    .hero-img {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.15);
-      background: #0a0f1c;
-      padding: 0.5rem;
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.1vw, 1.25rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.8rem;
     }
 
-    .section {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      background: var(--card);
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,0.15);
-    }
-
-    .section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
+    .hero-subtitle span {
       color: var(--accent);
     }
 
-    .list {
-      display: grid;
-      gap: 0.75rem;
+    .hero-text {
+      font-size: 0.92rem;
       color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
     }
 
-    .footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.85rem;
-      opacity: 0.6;
+    .tagline {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 1.25rem;
     }
 
-    .social {
-      margin-top: 1rem;
+    .hero-photo {
+      border-radius: 1.1rem;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 55%);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-photo {
+        order: -1;
+      }
+    }
+
+    /* TARJETAS / PESTAÑAS (SECCIONES) */
+    .tabs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    @media (max-width: 720px) {
+      .tabs-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 55%),
+      radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9));
+      border-radius: 1rem;
+      padding: 1.1rem 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text);
+      padding-left: 0.2rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.4rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      font-size: 1rem;
+      gap: 0.4rem;
+      align-items: flex-start;
     }
 
-    .social a {
+    .card ul li span.bullet {
+      margin-top: 0.15rem;
+      font-size: 0.8rem;
       color: var(--accent);
-      font-weight: 500;
+    }
+
+    /* CONTACTO */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 720px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .contact-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .contact-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.6rem;
+    }
+
+    footer {
+      padding: 1.6rem 1.25rem 2.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(30, 64, 175, 0.5);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
   </style>
 </head>
-
 <body>
-  <div class="page">
-    
-    <header>
-      <div class="pill">
-        <div class="pill-dot"></div>
-        Página oficial
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="avatar">
+        <!-- FOTO PEQUEÑA DEL PERFIL (OPCIONAL) -->
+        <img src="TU_URL_DE_FOTO_AQUI" alt="Carlos Treviño" />
       </div>
-    </header>
+      <div class="brand">
+        <span class="brand-title">Carlos Treviño</span>
+        <span class="brand-sub">Trader • Bitcoin • SUSHERO</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#plan-trading">Plan de trading</a>
+      <a href="#dca">DCA en Bitcoin</a>
+      <a href="#psicotrading">Psicotrading</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO / INICIO -->
+  <section id="inicio">
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Página oficial
+    </div>
 
     <div class="hero">
       <div>
         <h1 class="hero-title">
-          Carlos Treviño<br />
-          <span>Trader • Bitcoin • SUSHERO</span>
+          Carlos <span class="highlight">Treviño</span>
         </h1>
 
-        <p style="margin-bottom: 1rem; color: var(--muted);">
-          Opciones Binarias, DCA en Bitcoin y el camino hacia la libertad financiera.
+        <p class="hero-subtitle">
+          Trader • <span>Bitcoin</span> • SUSHERO
         </p>
 
-        <p>
-          Construyendo paso a paso una vida con decisiones inteligentes,
-          ingresos crecientes y visión a largo plazo.
+        <p class="hero-text">
+          Opciones binarias, DCA en Bitcoin y el camino hacia la libertad financiera.
+        </p>
+        <p class="tagline">
+          Construyendo paso a paso una vida con decisiones inteligentes, ingresos crecientes y visión a largo plazo.
         </p>
       </div>
 
-      <img class="hero-img" src="https://i.ibb.co/dG3Bym1/candles-blue.jpg" alt="Trading Chart" />
-    </div>
-
-    <!-- PLAN DE TRADING -->
-    <div class="section">
-      <h2>📈 Plan de Trading</h2>
-      <div class="list">
-        <p>• 6 operaciones al día (3 mañana, 3 noche)</p>
-        <p>• 2% – 3% por operación</p>
-        <p>• Stop después de: 3 ganancias o 2 pérdidas</p>
-        <p>• Enfoque total, disciplina y cero emociones</p>
+      <div class="hero-photo">
+        <!-- FOTO GRANDE DE PORTADA -->
+        <img src="TU_URL_DE_FOTO_AQUI" alt="Carlos Treviño en restaurante" />
       </div>
     </div>
+  </section>
 
-    <!-- DCA EN BITCOIN -->
-    <div class="section">
-      <h2>₿ DCA en Bitcoin</h2>
-      <div class="list">
-        <p>• Depósitos semanales</p>
-        <p>• Satoshis acumulados = libertad futura</p>
-        <p>• Enfoque 2030 – 2035</p>
+  <!-- SECCIONES (Pestañas) -->
+  <section id="plan-trading">
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <span class="badge">
+        <span class="badge-dot"></span>
+        Pestaña · Plan de trading
+      </span>
+      <h2>Plan de trading – Opciones Binarias</h2>
+      <p>
+        Este es el sistema que sigo para operar de forma disciplinada, sin apostar y
+        con enfoque profesional.
+      </p>
+
+      <ul>
+        <li><span class="bullet">•</span> <strong>Sesiones:</strong> 2 por día – mañana y noche.</li>
+        <li><span class="bullet">•</span> <strong>Operaciones por sesión:</strong> máximo 3.</li>
+        <li><span class="bullet">•</span> <strong>Riesgo por operación:</strong> 2–3% del capital.</li>
+        <li><span class="bullet">•</span> <strong>Regla de oro:</strong> si pierdo 2 seguidas, cierro sesión; si gano 3,
+          también cierro sesión.</li>
+        <li><span class="bullet">•</span> <strong>Objetivo:</strong> crecer la cuenta de forma constante y proteger el
+          capital, nunca forzar entradas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="dca">
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <span class="badge">
+        <span class="badge-dot"></span>
+        Pestaña · DCA en Bitcoin
+      </span>
+      <h2>DCA en Bitcoin – Construyendo patrimonio</h2>
+      <p>
+        Paralelo al trading, acumulo Bitcoin con un plan de Dollar Cost Averaging (DCA):
+        compras periódicas, pase lo que pase con el precio.
+      </p>
+
+      <ul>
+        <li><span class="bullet">•</span> Aportes semanales fijos en BTC (en satoshis, no en emociones).</li>
+        <li><span class="bullet">•</span> Aumentar el aporte cada año conforme crecen los ingresos.</li>
+        <li><span class="bullet">•</span> Mentalidad de <strong>10+ años</strong>, pensando en ciclos de halving y
+          en libertad financiera a largo plazo.</li>
+        <li><span class="bullet">•</span> Regla clave: nunca vender todo, solo retirar porcentajes estratégicos en
+          etapas importantes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="psicotrading">
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <span class="badge">
+        <span class="badge-dot"></span>
+        Pestaña · Psicotrading
+      </span>
+      <h2>Psicotrading – Mente fría, futuro caliente</h2>
+      <p>
+        Sin buena cabeza, ningún sistema funciona. Estas son las bases de mi psicotrading:
+      </p>
+
+      <ul>
+        <li><span class="bullet">•</span> Aceptar que perder es parte del juego; lo importante es respetar el plan.</li>
+        <li><span class="bullet">•</span> No operar enojado, cansado o por presión: si la mente no está, no se opera.</li>
+        <li><span class="bullet">•</span> Enfocarme en el proceso diario, no en el resultado de un solo día.</li>
+        <li><span class="bullet">•</span> Recordar siempre el objetivo: libertad, tiempo y una vida construida con
+          decisiones inteligentes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="card">
+      <span class="badge">
+        <span class="badge-dot"></span>
+        Pestaña · Contacto
+      </span>
+      <h2>Contacto</h2>
+
+      <div class="contact-grid">
+        <div>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-label">Teléfono</span>
+              <span class="contact-value">
+                <a href="https://wa.me/528441069116" target="_blank" rel="noopener">
+                  +52 844 106 9116
+                </a>
+              </span>
+            </li>
+            <li>
+              <span class="contact-label">Instagram</span>
+              <span class="contact-value">
+                <a href="https://instagram.com/ce_ftrevinho" target="_blank" rel="noopener">
+                  @ce_ftrevinho
+                </a>
+              </span>
+            </li>
+            <li>
+              <span class="contact-label">Facebook</span>
+              <span class="contact-value">
+                <a href="https://facebook.com" target="_blank" rel="noopener">
+                  Carlos Treviño
+                </a>
+                <!-- Si tienes el link directo, cámbialo aquí. -->
+              </span>
+            </li>
+          </ul>
+
+          <p class="contact-note">
+            Esta página no es asesoría financiera, es mi bitácora personal de crecimiento,
+            trading y acumulación en Bitcoin.
+          </p>
+        </div>
       </div>
     </div>
+  </section>
+</main>
 
-    <!-- CONTACTO -->
-    <div class="section">
-      <h2>📲 Contacto</h2>
+<footer>
+  <span>© <span id="year"></span> Carlos Treviño – Trader, Bitcoin y SUSHERO.</span>
+  <span>Construyendo libertad con disciplina, visión y paciencia.</span>
+</footer>
 
-      <div class="social">
-        <span>📞 Número: <strong>8441069116</strong></span>
-        <a href="https://instagram.com/ce_ftrevinho" target="_blank">📸 Instagram: ce_ftrevinho</a>
-        <a href="https://facebook.com" target="_blank">📘 Facebook: Carlos Treviño</a>
-      </div>
-    </div>
+<script>
+  // Año automático en el footer
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-    <div class="footer">
-      © 2025 Carlos Trading — Todos los derechos reservados.
-    </div>
-
-  </div>
 </body>
 </html>
